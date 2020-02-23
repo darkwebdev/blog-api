@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": [ "es2017" ],
+    "allowJs": false,
+    "checkJs": false,
+    "sourceMap": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+
+    "strict": true,
+    "skipLibCheck": true,
+    "noImplicitReturns": true,
+
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "./"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "**/__tests__/*"
+  ]
+}
