@@ -36,6 +36,6 @@ export default async (req: Request, res: Response) => {
       });
     }
   } catch (err) {
-    console.log(`Database error: ${err}`);
+    console.error(`Database error: ${err}`);
   }
 };

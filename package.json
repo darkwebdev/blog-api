@@ -6,6 +6,7 @@
   "scripts": {
     "start": "yarn build && node build",
     "build": "yarn tsc",
+    "lint": "tslint --project tsconfig.json --format verbose",
     "test": "yarn jest"
   },
   "dependencies": {

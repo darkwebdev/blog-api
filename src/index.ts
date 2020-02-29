@@ -1,3 +1,4 @@
+// tslint:disable no-console
 import express from 'express';
 import routes from './routes';
 import { json } from 'body-parser';
