@@ -10,6 +10,7 @@ jest.doMock('../../../models/user', () => mockUserModel);
 const mockSignin = jest.fn();
 jest.doMock('../../users/auth-utils', () => ({ signIn: mockSignin }));
 jest.doMock('bcryptjs');
+const mockBody = { username: 'user1', password: 'qwerty' };
 
 import addUser from '../add';
 
@@ -32,7 +33,7 @@ describe('POST /users', () => {
 
   describe('given user already exists', () => {
     it('should return error', async () => {
-      const req = mockReq({ body: { username: 'user1' } });
+      const req = mockReq({ body: mockBody });
       const res = mockRes({});
       mockUserModel.User.findOrCreate.mockResolvedValue([{}, false]);
 
@@ -48,7 +49,7 @@ describe('POST /users', () => {
 
   describe('given db error', () => {
     it('should return error', async () => {
-      const req = mockReq({ body: { username: 'user1', password: 'qwerty' } });
+      const req = mockReq({ body: mockBody });
       const res = mockRes({});
       mockUserModel.User.findOrCreate.mockResolvedValue([undefined, false]);
 
@@ -66,7 +67,7 @@ describe('POST /users', () => {
     it('should return token', async () => {
       mockSignin.mockReturnValue('fake-token');
       mockUserModel.User.findOrCreate.mockResolvedValue([{ id: '123' }, true]);
-      const req = mockReq({});
+      const req = mockReq({ body: mockBody });
       const res = mockRes({});
 
       await addUser(req, res);
