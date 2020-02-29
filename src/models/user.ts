@@ -1,9 +1,10 @@
-import { Sequelize, Model, DataTypes, BuildOptions, Association } from 'sequelize';
+import { Sequelize, Model, DataTypes, Association } from 'sequelize';
+import { v4 as uuid4 } from 'uuid';
 import { HASH_LENGTH, MAX_USERNAME_LENGTH } from '../config';
 import { Post } from './post';
 
 export class User extends Model {
-  public id!: number;
+  public id!: string;
   public username!: string;
   public password!: string;
 
@@ -12,11 +13,11 @@ export class User extends Model {
   };
 }
 
-export default (sequelize: Sequelize) => {
+export const initModel = (sequelize: Sequelize) => {
   User.init({
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUIDV4,
+      defaultValue: () => uuid4(),
       primaryKey: true
     },
     username: {
@@ -29,7 +30,8 @@ export default (sequelize: Sequelize) => {
     }
   }, {
     sequelize,
-    tableName: 'users'
+    tableName: 'users',
+    timestamps: false
   });
 
   User.hasMany(Post, {

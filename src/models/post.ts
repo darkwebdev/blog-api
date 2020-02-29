@@ -1,20 +1,20 @@
-import { Sequelize, Model, DataTypes, BuildOptions } from 'sequelize';
+import { Sequelize, Model, DataTypes } from 'sequelize';
+import { v4 as uuid4 } from 'uuid';
 import { MAX_BODY_LENGTH, MAX_TITLE_LENGTH } from '../config';
 
 export class Post extends Model {
-  public id!: number;
+  public id!: string;
   public title!: string;
   public body!: string;
   public authorId!: number;
   public readonly createdAt!: Date;
 }
 
-
-export default (sequelize: Sequelize) =>
+export const initModel = (sequelize: Sequelize) =>
   Post.init({
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUIDV4,
+      defaultValue: uuid4,
       primaryKey: true
     },
     title: {

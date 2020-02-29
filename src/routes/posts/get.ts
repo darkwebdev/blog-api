@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { JsonResponse } from '../types';
 import db from '../../db';
-import initModel, { Post } from '../../models/post';
+import { initModel, Post } from '../../models/post';
 import { DEFAULT_LIMIT } from '../../config';
 
 initModel(db);
