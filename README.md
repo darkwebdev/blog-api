@@ -6,6 +6,11 @@ Simple blog API using Node.js and SQLite
 yarn
 ```
 
+## Run
+```
+yarn start
+```
+
 ## Lint
 ```
 yarn lint
